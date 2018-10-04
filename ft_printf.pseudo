@@ -1,0 +1,94 @@
+while (fmt)
+	directive := parse(fmt)
+	buffer += convert(directive, args)
+
+parse(fmt) {
+	
+}
+
+convert (directive, args) {
+	str += switch directive.convertion
+		case 'c':
+			convert_char(arg(char), convertion.width)
+		case 's':
+			convert_str(arg(char *), convertion.width)
+		case 'd', 'i':
+			convert_ll_base(10, arg(directive.length), lower)
+		case 'u':
+			convert_ull_base(10, arg(directive.length), lower, directive)
+		case 'x', 'X':
+			convert_ull_base(16, arg(directive.length), 'X' ? upper : lower)
+		case 'o', 'O':
+			convert_ull_base(8, arg(directive.length), 'O' ? upper : lower)
+
+	*if directive.space and directive.conversion E "di" (signed)
+	*	str += ' ' if number is positive
+	return str
+}
+
+convert_ull_base(base, ull, directive) {
+	(get lenght)
+	pow := largest power of base <= ull
+	len := root(base, pow)
+	if (directive.#)
+		num = directive.convertion E "xX"
+			? len += 2
+			: directive.convertion E "oO"
+			? len += 1
+			: ""
+	if (directive.width > len)
+		len += directive.width - len
+	if (directive.precision > len)
+		len += directive.precision - len
+	num := malloc(len)
+	(get value)
+	if (directive.precision > len)
+		num += "0" * directive.precision - len
+	if (directive.width > len and directive.- == 0)
+		num += " " * directive.width - len
+	if (directive.#)
+		num = directive.convertion E "xX"
+			? "0x"
+			: directive.convertion E "oO"
+			? "0"
+			: ""
+	sym := directive.convert E "XO" ? 0..9A..Z : 0..9a..z
+	while pow
+		num += sym[ull / pow % base]
+		pow /= base
+	if (directive.width > len and directive.-)
+		num += " " * directive.width - len
+	return num
+}
+
+convert_ll_base(base, ll, directive) {
+	(get length)
+	len := root(base, pow)
+	if (directive.space and ll) >= 0
+		len++
+	if (directive.+ and ll) >= 0
+		len++
+	if (directive.precision > len)
+		len += directive.precision - len
+	if (directive.width > len)
+		len += directive.width - len
+	num := malloc(len)
+	(get value)
+	if (directive.space and ll) >= 0
+		num += ' '
+	if (directive.+ and ll) >= 0
+		num += '+'
+	if (ll < 0)
+		num += '-'
+	if (directive.precision > len)
+		len += directive.precision - len * "0"
+	if (directive.width > len and directive.- == 0)
+		num += directive.width - len * " "
+	sym := 0..9
+	while pow
+		num += sym[ll / pow % base]
+		pow /= base
+	if (directive.width > len and directive.-)
+		num += directive.width - len * " "
+	return num
+}
