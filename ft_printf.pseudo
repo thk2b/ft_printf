@@ -1,6 +1,8 @@
 while (fmt)
 	directive := parse(fmt)
 	buffer += convert(directive, args)
+	str := malloc(buffer.length)
+	str += buffer.join
 
 parse(fmt) {
 	directive.flags = *fmt E "#-+ "

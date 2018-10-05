@@ -6,11 +6,11 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/03 10:56:18 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/03 10:57:28 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/04 16:59:59 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "directive.h"
 #include <stdarg.h>
 
-int	convert(int fd, t_directive *directive, va_list ap);
+int	convert(t_directive *directive, char **dst, va_list ap);
