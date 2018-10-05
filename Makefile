@@ -5,6 +5,8 @@ CC = gcc
 FLAGS = -Wall -Wextra -Werror -I libft/includes
 
 SRCS =\
+	parse.c\
+	convert.c\
 	ft_dvprintf.c\
 	ft_dprintf.c\
 	ft_printf.c\

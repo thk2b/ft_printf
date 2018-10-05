@@ -1,16 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   converter.h                                        :+:      :+:    :+:   */
+/*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/03 10:56:18 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/04 16:59:59 by tkobb            ###   ########.fr       */
+/*   Created: 2018/10/03 10:53:00 by tkobb             #+#    #+#             */
+/*   Updated: 2018/10/04 21:02:26 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "directive.h"
-#include <stdarg.h>
+#ifndef PARSER_H
+# define PARSER_H
+# include "directive.h"
 
-int	convert(t_directive *directive, char **dst, va_list ap);
+int	parse(t_directive *directive, const char *fmt);
+
+#endif

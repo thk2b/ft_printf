@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 10:40:33 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/04 16:57:45 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/04 21:50:11 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "directive.h"
-#include "parser.h"
+#include "parse.h"
 
 static void reset_directive(t_directive *d)
 {
@@ -39,6 +39,8 @@ static int parse_flags(t_directive *d, const char *fmt)
 			d->flags |= F_PLUS;
 		else if (fmt[len] == ' ')
 			d->flags |= F_SPACE;
+		else if (fmt[len] == '0')
+			d->flags |= F_ZERO;
 		else
 			break;
 		len++;

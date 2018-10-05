@@ -1,15 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   get_len.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/03 10:53:00 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/04 16:21:26 by tkobb            ###   ########.fr       */
+/*   Created: 2018/10/04 23:01:19 by tkobb             #+#    #+#             */
+/*   Updated: 2018/10/04 23:09:08 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "directive.h"
+#include "convert.h"
 
-int	parse(t_directive *directive, const char *fmt);
+void	get_len(t_directive_len *len, t_directive *d, unsigned long long ull)
+{
+
+}
