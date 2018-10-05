@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 14:04:52 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/05 16:02:41 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/05 16:54:09 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,21 +65,3 @@ int convert_ull_base(int base, char **dst, unsigned long long ull, t_directive *
 	set_post(t, &len, d);
 	return (len.total);
 }
-
-#define TEST
-# ifdef TEST
-# include <printf.h>
-
-void test1(void)
-{
-	t_directive d;
-	char *conv;
-
-	d.convertion = 'x';
-	d.flags = 0;
-	d.precision = 0;
-	d.width = 0;
-	printf("%s\n", convert(&d, ))
-}
-
-#endif
