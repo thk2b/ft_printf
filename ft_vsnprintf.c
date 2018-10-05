@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/03 13:18:13 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/04 17:57:12 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/04 19:52:02 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ int	vsnprintf(char *s, size_t len, const char *fmt, va_list args)
 		if (*fmt == '%')
 		{
 			if (start != fmt)
-				;// len += putstrrange(start, fmt - 1);
+				;// len += strrange(start, fmt - 1);
 			fmt += parse(&d, ++fmt) + 1;
 			len = convert(&d, &tmp, args);
-			lbuf_add(lbuf, convert(&d, fmt));
+			lbuf_add(&lbuf, convert(&d, fmt), len);
 			start = fmt;
 		}
 		fmt++;
