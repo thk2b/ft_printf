@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 21:13:11 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/05 18:17:15 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/05 21:23:36 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static unsigned long long	cast_u_arg(va_list ap, t_directive *d)
 		return (va_arg(ap, uintmax_t));
 	if (d->precision == 'j')
 		return (va_arg(ap, size_t));
-	return (0);
+	return (va_arg(ap, unsigned int));
 }
 
 // static long long			cast_s_arg(va_list ap, t_directive *d)
@@ -57,11 +57,11 @@ int	convert(t_directive *d, char **dst, va_list ap)
 	if (d->convertion == 'x')
 		return (convert_ull_base(16, dst, cast_u_arg(ap, d), d));
 	if (d->convertion == 'o')
-		return (convert_ull_base(16, dst, cast_u_arg(ap, d), d));
+		return (convert_ull_base(8, dst, cast_u_arg(ap, d), d));
 	if (d->convertion == 'u')
 		return (convert_ull_base(10, dst, cast_u_arg(ap, d), d));
-	// if (d->convertion == 's')
-	// 	return convert_str(dst, va_arg(ap, char *));
+	if (d->convertion == 's')
+		return convert_str(dst, va_arg(ap, char *), d);
 	// if (d->convertion == 'S')
 	// 	return convert_wstr(dst, va_arg(ap, char *));
 	// if (d->convertion == 'c')

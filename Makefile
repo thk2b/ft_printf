@@ -7,13 +7,13 @@ FLAGS = -Wall -Wextra -Werror -I libft/includes
 SRCS =\
 	parse.c\
 	convert_num.c\
+	convert_str.c\
 	convert_utils.c\
 	convert.c\
 	linked_buffer.c\
 	get_len.c\
 	ft_printf.c\
 	ft_vsnprintf.c\
-	# convert_str.c\
 
 OBJS = $(SRCS:.c=.o)
 

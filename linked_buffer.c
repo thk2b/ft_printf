@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 19:35:40 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/05 18:32:57 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/05 20:03:52 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ char				*lbuf_join(t_lbuf_head *head, size_t maxlen)
 	char			*cur;
 	t_lbuf_block	*block;
 
+	if (head == NULL)
+		return (ft_strdup(""));
 	len = head->total_len > maxlen ? maxlen : head->total_len;
 	if ((str = malloc((sizeof(char) * (1 + len)))) == NULL)
 		return (NULL);
