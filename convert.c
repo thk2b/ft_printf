@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 21:13:11 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/05 21:23:36 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/05 21:34:17 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,22 @@
 #include "convert.h"
 #include "libft.h"
 #include <stdarg.h>
+#include <printf.h>
 
 static unsigned long long	cast_u_arg(va_list ap, t_directive *d)
 {
-	if (d->precision == 'l')
+	printf("%c\n", d->precision);
+	if (d->length == 'l')
 		return (va_arg(ap, unsigned long));
-	if (d->precision == 'L')
+	if (d->length == 'L')
 		return (va_arg(ap, unsigned long long));
-	if (d->precision == 'h')
+	if (d->length == 'h')
 		return (va_arg(ap, int));
-	if (d->precision == 'H')
+	if (d->length == 'H')
 		return (va_arg(ap, int));
-	if (d->precision == 'j')
+	if (d->length == 'j')
 		return (va_arg(ap, uintmax_t));
-	if (d->precision == 'j')
+	if (d->length == 'j')
 		return (va_arg(ap, size_t));
 	return (va_arg(ap, unsigned int));
 }
@@ -35,17 +37,17 @@ static unsigned long long	cast_u_arg(va_list ap, t_directive *d)
 // static long long			cast_s_arg(va_list ap, t_directive *d)
 // {
 // //	if (d->convertion >= 'A' && d->convertion <= 'Z')
-// 	if (d->precision == 'l')
+// 	if (d->length == 'l')
 // 		return (va_arg(ap, long));
-// 	if (d->precision == 'L')
+// 	if (d->length == 'L')
 // 		return (va_arg(ap, long long));
-// 	if (d->precision == 'h')
+// 	if (d->length == 'h')
 // 		return (va_arg(ap, int));
-// 	if (d->precision == 'H')
+// 	if (d->length == 'H')
 // 		return (va_arg(ap, int));
-// 	if (d->precision == 'j')
+// 	if (d->length == 'j')
 // 		return (va_arg(ap, intmax_t));
-// 	if (d->precision == 'j')
+// 	if (d->length == 'j')
 // 		return (va_arg(ap, size_t)); // int?
 // 	return (0);
 // }
