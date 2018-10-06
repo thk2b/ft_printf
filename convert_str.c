@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 10:13:50 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/05 20:37:19 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/06 14:48:56 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ int	convert_str(char **dst, char *src, t_directive *d)
 
 	cur = 0;
 	srclen = ft_strlen(src);
-	get_len(&len, d, srclen);
+	get_len(&len, d, srclen, 0);
 	if ((*dst = (char*)malloc(sizeof(char) * len.total)) == NULL)
 		return (-1);
-	cur += set_pre(*dst, &len, d);
+	cur += set_pre(*dst, &len, d, 0);
 	ft_strcpy(*dst + cur, src);
 	cur += srclen;
 	cur += set_post(*dst + cur, &len, d);

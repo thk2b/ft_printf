@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 23:01:19 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/05 21:59:56 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/06 15:38:07 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,15 @@
 void	init_len(t_convertion_len *len)
 {
 	len->left_spaces = 0;
-	len->right_spaces = 0;
+	len->sign = 0;
 	len->prefix = 0;
 	len->zeros = 0;
 	len->value = 0;
+	len->right_spaces = 0;
 	len->total = 0;
 }
 
-void	get_len(t_convertion_len *len, t_directive *d, size_t val_len)
+void	get_len(t_convertion_len *len, t_directive *d, size_t val_len, int is_neg)
 {
 	size_t total;
 
@@ -32,6 +33,12 @@ void	get_len(t_convertion_len *len, t_directive *d, size_t val_len)
 	if ((unsigned)d->precision > total)
 		len->zeros = d->precision - total;
 	total += len->zeros;
+	if (ft_strchr("Ddi", d->convertion))
+	{
+		if (is_neg || d->flags & (F_SPACE | F_PLUS))
+			len->sign = 1;
+	}
+	total += len->sign;
 	if (d->flags & F_HASH)
 		len->prefix = ft_strchr("Xx", d->convertion) ? 2 : 1;
 	total += len->prefix;
@@ -54,9 +61,10 @@ void	get_len(t_convertion_len *len, t_directive *d, size_t val_len)
 
 void print_len(t_convertion_len *l)
 {
-	printf("left:%zu right:%zu zeroes:%zu prefix:%zu value:%zu total:%zu\n",
+	printf("left:%zu right:%zu sign:%zu zeroes:%zu prefix:%zu value:%zu total:%zu\n",
 		l->left_spaces,
 		l->right_spaces,
+		l->sign,
 		l->zeros,
 		l->prefix,
 		l->value,
@@ -70,7 +78,7 @@ void test0(void)
 	char s[] = "#11.10o";
 	printf("%s\n", s);
 	parse(&d, s);
-	get_len(&l, &d, 5);
+	get_len(&l, &d, 5, 0);
 	print_len(&l);
 }
 void test1(void)
@@ -80,7 +88,7 @@ void test1(void)
 	char s[] = "#15.10o";
 	printf("%s\n", s);
 	parse(&d, s);
-	get_len(&l, &d, 5);
+	get_len(&l, &d, 5, 0);
 	print_len(&l);
 }
 
@@ -91,7 +99,7 @@ void test2(void)
 	char s[] = "#-15.10o";
 	printf("%s\n", s);
 	parse(&d, s);
-	get_len(&l, &d, 5);
+	get_len(&l, &d, 5, 0);
 	print_len(&l);
 }
 
@@ -100,7 +108,7 @@ void test3(void)
 	t_directive d;
 	t_convertion_len l;
 	parse(&d, "#x");
-	get_len(&l, &d, 5);
+	get_len(&l, &d, 5, 0);
 	print_len(&l);
 }
 
@@ -111,7 +119,7 @@ void test4(void)
 	char s[] = "10x";
 	printf("%s\n", s);
 	parse(&d, s);
-	get_len(&l, &d, 5);
+	get_len(&l, &d, 5, 0);
 	print_len(&l);
 }
 
@@ -122,7 +130,7 @@ void test5(void)
 	char s[] = ".10x";
 	printf("%s\n", s);
 	parse(&d, s);
-	get_len(&l, &d, 5);
+	get_len(&l, &d, 5, 0);
 	print_len(&l);
 }
 
@@ -133,7 +141,7 @@ void test6(void)
 	char s[] = "-2.2x";
 	printf("%s\n", s);
 	parse(&d, s);
-	get_len(&l, &d, 5);
+	get_len(&l, &d, 5, 0);
 	print_len(&l);
 }
 
@@ -144,7 +152,7 @@ void test7(void)
 	char s[] = "-6.2x";
 	printf("%s\n", s);
 	parse(&d, s);
-	get_len(&l, &d, 5);
+	get_len(&l, &d, 5, 0);
 	print_len(&l);
 }
 
@@ -155,7 +163,71 @@ void test8(void)
 	char s[] = "#-6.2x";
 	printf("%s\n", s);
 	parse(&d, s);
-	get_len(&l, &d, 5);
+	get_len(&l, &d, 5, 0);
+	print_len(&l);
+}
+
+void test9(void)
+{
+	t_directive d;
+	t_convertion_len l;
+	char s[] = "#+6.2d(0)";
+	printf("%s\n", s);
+	parse(&d, s);
+	get_len(&l, &d, 5, 0);
+	print_len(&l);
+}
+void test99(void)
+{
+	t_directive d;
+	t_convertion_len l;
+	char s[] = "#+6.2d(1)";
+	printf("%s\n", s);
+	parse(&d, s);
+	get_len(&l, &d, 5, 1);
+	print_len(&l);
+}
+void test10(void)
+{
+	t_directive d;
+	t_convertion_len l;
+	char s[] = "# 6.2d(0)";
+	printf("%s\n", s);
+	parse(&d, s);
+	get_len(&l, &d, 5, 0);
+	print_len(&l);
+}
+
+void test11(void)
+{
+	t_directive d;
+	t_convertion_len l;
+	char s[] = "#6.2d(1)";
+	printf("%s\n", s);
+	parse(&d, s);
+	get_len(&l, &d, 5, 1);
+	print_len(&l);
+}
+
+void test12(void)
+{
+	t_directive d;
+	t_convertion_len l;
+	char s[] = "#6.2d(1)";
+	printf("%s\n", s);
+	parse(&d, s);
+	get_len(&l, &d, 5, 1);
+	print_len(&l);
+}
+
+void test13(void)
+{
+	t_directive d;
+	t_convertion_len l;
+	char s[] = "#6.2d(0)";
+	printf("%s\n", s);
+	parse(&d, s);
+	get_len(&l, &d, 5, 0);
 	print_len(&l);
 }
 
@@ -169,6 +241,12 @@ int main(void)
 	test6();
 	test7();
 	test8();
+	test9();
+	test99();
+	test10();
+	test11();
+	test12();
+	test13();
 }
 
 #endif

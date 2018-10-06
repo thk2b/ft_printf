@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 15:48:52 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/05 22:01:36 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/06 14:56:33 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,22 @@ static size_t set_prefix(t_directive *d, char *dst)
 	return (1);
 }
 
-size_t	set_pre(char *dst, t_convertion_len *len, t_directive *d)
+static size_t set_sign(t_directive *d, char *dst, int is_neg)
+{
+	if (is_neg == 0 && (d->flags & ( F_SPACE | F_PLUS)))
+	{
+		*dst = d->flags & F_SPACE ? ' ' : '+';
+		return (1);
+	}
+	else if (is_neg)
+	{
+		*dst = '-';
+		return (1);
+	}
+	return (0);
+}
+
+size_t	set_pre(char *dst, t_convertion_len *len, t_directive *d, char is_neg)
 {
 	size_t cur;
 
@@ -46,8 +61,10 @@ size_t	set_pre(char *dst, t_convertion_len *len, t_directive *d)
 	cur = 0;
 	if (len->left_spaces)
 		cur += repeat(len->left_spaces, ' ', dst);
+	if (len->sign)
+		cur += set_sign(d, dst + cur, is_neg);
 	if (len->prefix)
-		cur += set_prefix(d, dst);
+		cur += set_prefix(d, dst + cur);
 	if (len->zeros)
 		cur += repeat(len->zeros, '0', dst + cur);
 	return (cur);
