@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 21:13:11 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/05 16:02:53 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/05 18:17:15 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ static unsigned long long	cast_u_arg(va_list ap, t_directive *d)
 	if (d->precision == 'L')
 		return (va_arg(ap, unsigned long long));
 	if (d->precision == 'h')
-		return (va_arg(ap, unsigned short));
+		return (va_arg(ap, int));
 	if (d->precision == 'H')
-		return (va_arg(ap, unsigned char));
+		return (va_arg(ap, int));
 	if (d->precision == 'j')
 		return (va_arg(ap, uintmax_t));
 	if (d->precision == 'j')
@@ -32,28 +32,28 @@ static unsigned long long	cast_u_arg(va_list ap, t_directive *d)
 	return (0);
 }
 
-static long long			cast_s_arg(va_list ap, t_directive *d)
-{
-//	if (d->convertion >= 'A' && d->convertion <= 'Z')
-	if (d->precision == 'l')
-		return (va_arg(ap, long));
-	if (d->precision == 'L')
-		return (va_arg(ap, long long));
-	if (d->precision == 'h')
-		return (va_arg(ap, short));
-	if (d->precision == 'H')
-		return (va_arg(ap, char));
-	if (d->precision == 'j')
-		return (va_arg(ap, intmax_t));
-	if (d->precision == 'j')
-		return (va_arg(ap, size_t)); // int?
-	return (0);
-}
+// static long long			cast_s_arg(va_list ap, t_directive *d)
+// {
+// //	if (d->convertion >= 'A' && d->convertion <= 'Z')
+// 	if (d->precision == 'l')
+// 		return (va_arg(ap, long));
+// 	if (d->precision == 'L')
+// 		return (va_arg(ap, long long));
+// 	if (d->precision == 'h')
+// 		return (va_arg(ap, int));
+// 	if (d->precision == 'H')
+// 		return (va_arg(ap, int));
+// 	if (d->precision == 'j')
+// 		return (va_arg(ap, intmax_t));
+// 	if (d->precision == 'j')
+// 		return (va_arg(ap, size_t)); // int?
+// 	return (0);
+// }
 
 int	convert(t_directive *d, char **dst, va_list ap)
 {
-	if (ft_strchr("dDi", d->convertion))
-		return (convert_ll_base(10, dst, cast_s_arg(ap, d), d));
+	// if (ft_strchr("dDi", d->convertion))
+	// 	return (convert_ll_base(10, dst, cast_s_arg(ap, d), d));
 	if (d->convertion == 'x')
 		return (convert_ull_base(16, dst, cast_u_arg(ap, d), d));
 	if (d->convertion == 'o')
@@ -66,4 +66,5 @@ int	convert(t_directive *d, char **dst, va_list ap)
 	// 	return convert_wstr(dst, va_arg(ap, char *));
 	// if (d->convertion == 'c')
 	// 	return convert_char(dst, va_arg(ap, int));
+	return (0);
 }

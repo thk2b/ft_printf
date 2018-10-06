@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 23:01:19 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/05 16:49:00 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/05 18:03:39 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	get_len(t_convertion_len *len, t_directive *d, size_t val_len)
 	len->total = total;
 }
 
-#define TEST
+// #define TEST
 # ifdef TEST
 # include <printf.h>
 # include "parse.h"

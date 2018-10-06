@@ -6,22 +6,26 @@ FLAGS = -Wall -Wextra -Werror -I libft/includes
 
 SRCS =\
 	parse.c\
+	convert_num.c\
+	convert_utils.c\
 	convert.c\
-	ft_dvprintf.c\
-	ft_dprintf.c\
+	linked_buffer.c\
+	get_len.c\
 	ft_printf.c\
+	ft_vsnprintf.c\
+	# convert_str.c\
 
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT)
+$(NAME): $(OBJS)
 	ar rc $(NAME) $(OBJS)
 
 $(LIBFT):
 	make -C libft
 
-%.o: %.c
+%.o: %.c $(LIBFT)
 	$(CC) $(FLAGS) -c $< -o $@
 
 clean:

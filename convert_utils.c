@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 15:48:52 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/05 15:53:26 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/05 18:15:58 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ size_t	set_pre(char *dst, t_convertion_len *len, t_directive *d)
 {
 	size_t cur;
 
+	(void)d;
 	cur = 0;
 	if (len->left_spaces)
 		cur += repeat(len->left_spaces, ' ',dst);
@@ -55,8 +56,9 @@ size_t	set_post(char *dst, t_convertion_len *len, t_directive *d)
 {
 	size_t cur;
 
+	(void)d;
 	cur = 0;
 	if (len->right_spaces)
 		cur += repeat(len->right_spaces, ' ', dst);
-	return (len);
+	return (cur);
 }

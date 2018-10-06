@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 19:35:40 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/04 20:44:19 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/05 18:32:57 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ char				*lbuf_join(t_lbuf_head *head, size_t maxlen)
 	return (str);
 }
 
-#define TEST
+// #define TEST
 #ifdef TEST
 
 #include <stdio.h>
