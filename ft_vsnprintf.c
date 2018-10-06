@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/03 13:18:13 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/05 21:21:37 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/05 21:50:29 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int			ft_vsnprintf(char *dst, size_t len, const char *fmt, va_list args)
 
 	start = fmt;
 	lbuf = NULL;
-	while (*fmt && (lbuf == NULL || lbuf->total_len < len))
+	while (*fmt)
 	{
 		if (*fmt == '%')
 		{
@@ -64,7 +64,7 @@ int			ft_vsnprintf(char *dst, size_t len, const char *fmt, va_list args)
 	str = lbuf_join(lbuf, len);
 	ft_strcpy(dst, str);
 	free(str);
-	ret = lbuf->total_len > len ? len : lbuf->total_len;
+	ret = lbuf->total_len;
 	free(lbuf);
 	return ((int)ret);
 }

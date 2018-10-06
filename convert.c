@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 21:13:11 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/05 21:34:17 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/05 22:05:12 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,17 @@
 
 static unsigned long long	cast_u_arg(va_list ap, t_directive *d)
 {
-	printf("%c\n", d->precision);
 	if (d->length == 'l')
-		return (va_arg(ap, unsigned long));
+		return ((unsigned long)va_arg(ap, unsigned long));
 	if (d->length == 'L')
-		return (va_arg(ap, unsigned long long));
+		return ((unsigned long long)va_arg(ap, unsigned long long));
 	if (d->length == 'h')
-		return (va_arg(ap, int));
+		return ((int)va_arg(ap, int));
 	if (d->length == 'H')
-		return (va_arg(ap, int));
+		return ((int)va_arg(ap, int));
 	if (d->length == 'j')
 		return (va_arg(ap, uintmax_t));
-	if (d->length == 'j')
+	if (d->length == 'z')
 		return (va_arg(ap, size_t));
 	return (va_arg(ap, unsigned int));
 }

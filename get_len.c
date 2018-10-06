@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 23:01:19 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/05 19:49:38 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/05 21:59:56 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ void	get_len(t_convertion_len *len, t_directive *d, size_t val_len)
 
 	total = val_len;
 	init_len(len);
-	if (d->flags & F_HASH)
-		len->prefix = ft_strchr("Xx", d->convertion) ? 2 : 1;
-	total += len->prefix;
 	if ((unsigned)d->precision > total)
 		len->zeros = d->precision - total;
 	total += len->zeros;
+	if (d->flags & F_HASH)
+		len->prefix = ft_strchr("Xx", d->convertion) ? 2 : 1;
+	total += len->prefix;
 	if ((unsigned)d->width > total)
 	{
 		if (d->flags & F_MINUS)

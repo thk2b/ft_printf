@@ -6,20 +6,21 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 15:48:52 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/05 20:38:54 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/05 22:01:36 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "convert.h"
 #include "libft.h"
+#include <printf.h>
 
 static size_t repeat(size_t n, char c, char *dst)
 {
 	size_t	cur;
 
 	cur = 0;
-	while (cur++ < n)
-		dst[cur] = c;
+	while (cur < n)
+		dst[cur++] = c;
 	return (n);
 }
 
@@ -44,7 +45,7 @@ size_t	set_pre(char *dst, t_convertion_len *len, t_directive *d)
 	(void)d;
 	cur = 0;
 	if (len->left_spaces)
-		cur += repeat(len->left_spaces, ' ',dst);
+		cur += repeat(len->left_spaces, ' ', dst);
 	if (len->prefix)
 		cur += set_prefix(d, dst);
 	if (len->zeros)
