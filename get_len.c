@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 23:01:19 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/06 15:38:07 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/06 16:11:53 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,14 @@ void	get_len(t_convertion_len *len, t_directive *d, size_t val_len, int is_neg)
 	total += len->prefix;
 	if ((unsigned)d->width > total)
 	{
-		if (d->flags & F_MINUS)
+		if (d->flags & F_ZERO && d->precision == 0)
+			len->zeros += d->width - total;
+		else if (d->flags & F_MINUS)
 			len->right_spaces = d->width - total;
-		else 
+		else
 			len->left_spaces = d->width - total;
+		total += d->width - total;
 	}
-	total += len->right_spaces + len->left_spaces;
 	len->value = val_len;
 	len->total = total;
 }

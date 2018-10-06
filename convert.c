@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 21:13:11 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/06 15:19:11 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/06 16:16:03 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static unsigned long long	cast_u_arg(va_list ap, t_directive *d)
 	if (d->length == 'H')
 		return ((int)va_arg(ap, int));
 	if (d->length == 'j')
-		return (va_arg(ap, uintmax_t));
+		return ((uintmax_t)va_arg(ap, uintmax_t));
 	if (d->length == 'z')
-		return (va_arg(ap, size_t));
+		return ((size_t)va_arg(ap, size_t));
 	return (va_arg(ap, unsigned int));
 }
 
@@ -37,17 +37,17 @@ static long long			cast_s_arg(va_list ap, t_directive *d)
 {
 //	if (d->convertion >= 'A' && d->convertion <= 'Z')
 	if (d->length == 'l')
-		return (va_arg(ap, long));
+		return ((long)va_arg(ap, long));
 	if (d->length == 'L')
-		return (va_arg(ap, long long));
+		return ((long long)va_arg(ap, long long));
 	if (d->length == 'h')
-		return (va_arg(ap, int));
+		return ((int)va_arg(ap, int));
 	if (d->length == 'H')
-		return (va_arg(ap, int));
+		return ((int)va_arg(ap, int));
 	if (d->length == 'j')
-		return (va_arg(ap, intmax_t));
+		return ((intmax_t)va_arg(ap, intmax_t));
 	if (d->length == 'j')
-		return (va_arg(ap, size_t)); // int?
+		return ((size_t)va_arg(ap, size_t)); // int?
 	return (va_arg(ap, int));
 }
 
