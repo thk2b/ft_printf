@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 23:01:19 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/06 22:32:52 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/07 11:16:22 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static size_t get_zeros(t_convertion_len *len, t_directive *d, size_t total)
 {
 	if (d->convertion == 's' || d->convertion == 'S')
 		return (0);
-	if ((unsigned)d->precision > total)
+	if (d->precision > (int)total)
 		len->zeros = d->precision - total;
 	return len->zeros;
 }
@@ -46,12 +46,12 @@ void	get_len(t_convertion_len *len, t_directive *d, size_t val_len, int is_neg)
 			len->sign = 1;
 	}
 	total += len->sign;
-	if (d->flags & F_HASH)
+	if (d->flags & F_HASH && val_len)
 		len->prefix = ft_strchr("Xx", d->convertion) ? 2 : 1;
 	total += len->prefix;
 	if ((unsigned)d->width > total)
 	{
-		if (d->flags & F_ZERO && d->precision == 0)
+		if (d->flags & F_ZERO && d->precision == -1)
 			len->zeros += d->width - total;
 		else if (d->flags & F_MINUS)
 			len->right_spaces = d->width - total;

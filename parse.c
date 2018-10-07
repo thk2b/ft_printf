@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 10:40:33 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/06 22:07:37 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/07 10:58:07 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void reset_directive(t_directive *d)
 	d->convertion = 0;
 	d->flags = 0;
 	d->length = 0;
-	d->precision = 0;
+	d->precision = -1;
 	d->width = 0;
 }
 
@@ -81,6 +81,8 @@ static int parse_precision(t_directive *d, const char *fmt)
 			len++;
 		return (len);
 	}
+	else
+		d->precision = 0;
 	return (len);
 }
 

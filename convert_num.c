@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 14:04:52 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/06 23:02:40 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/07 11:11:24 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,15 @@ int convert_ull_base(int base, char **dst, unsigned long long ull, t_directive *
 
 	ndigits = 0;
 	pow = get_pow(base, ull, &ndigits);
+	if (ull == 0 && d->precision != -1)
+		ndigits = 0;
 	get_len(&len, d, ndigits, 0);
 	if ((*dst = (char*)malloc(sizeof(char) * len.total)) == NULL)
 		return (-1);
 	t = *dst;
 	t += set_pre(t, &len, d, 0);
-	t += set_digits(base, t, ull, pow, ISUPPER(d->convertion));
+	if (ndigits)
+		t += set_digits(base, t, ull, pow, ISUPPER(d->convertion));
 	set_post(t, &len, d);
 	return (len.total);
 }
@@ -78,12 +81,15 @@ int convert_ll_base(int base, char **dst, long long ll, t_directive *d)
 	ull = ll < 0 ? (unsigned long long)(-1 * ll) : (unsigned long long)ll;
 	ndigits = 0;
 	pow = get_pow(base, ull, &ndigits);
+	if (ull == 0 && d->precision != -1)
+		ndigits = 0;
 	get_len(&len, d, ndigits, ll < 0);
 	if ((*dst = (char*)malloc(sizeof(char) * len.total)) == NULL)
 		return (-1);
 	t = *dst;
 	t += set_pre(t, &len, d, ll < 0);
-	t += set_digits(base, t, ull, pow, ISUPPER(d->convertion));
+	if (ndigits)
+		t += set_digits(base, t, ull, pow, ISUPPER(d->convertion));
 	set_post(t, &len, d);
 	return (len.total);
 }

@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 15:48:52 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/06 22:40:14 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/07 11:14:30 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ static size_t repeat(size_t n, char c, char *dst)
 
 static size_t set_prefix(t_directive *d, char *dst)
 {
-	if ((d->flags & F_HASH) == 0)
-		return (0);
 	if (ft_strchr("xX", d->convertion))
 	{
 		*(dst) = '0';
