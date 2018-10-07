@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 10:40:33 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/05 21:34:35 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/06 22:07:37 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void reset_directive(t_directive *d)
 #define IS_FLAG(c) ((c) == '#' || (c) == ' ' || (c) == '-' || (c) == '+')
 static int parse_flags(t_directive *d, const char *fmt)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (1)
@@ -40,7 +40,11 @@ static int parse_flags(t_directive *d, const char *fmt)
 		else if (fmt[len] == ' ')
 			d->flags |= F_SPACE;
 		else if (fmt[len] == '0')
+		{
+			if (d->flags & F_MINUS)
+				break;
 			d->flags |= F_ZERO;
+		}
 		else
 			break;
 		len++;
@@ -103,6 +107,15 @@ static int parse_length(t_directive *d, const char *fmt)
 
 static int parse_convertion(t_directive *d, const char *fmt)
 {
+	if (*fmt == 'p')
+	{
+		d->flags |= F_HASH;
+		d->length = 'L';
+		d->convertion = 'x';
+		return (1);
+	}
+	if (ft_strchr("DOU", *fmt))
+		d->length = 'l';
 	d->convertion = *fmt;
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 15:48:52 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/06 14:56:33 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/06 22:11:18 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static size_t set_prefix(t_directive *d, char *dst)
 	if (ft_strchr("xX", d->convertion))
 	{
 		*(dst) = '0';
-		*(dst + 1) = 'x';
+		*(dst + 1) = d->convertion == 'x' ? 'x' : 'X';
 		return (2);
 	}
 	*dst = '0';

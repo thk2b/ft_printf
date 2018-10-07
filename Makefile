@@ -9,6 +9,7 @@ SRCS =\
 	convert_utils.c\
 	convert_num.c\
 	convert_str.c\
+	convert_percent.c\
 	convert.c\
 	get_len.c\
 	ft_asprintf.c\

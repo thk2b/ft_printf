@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 21:13:11 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/06 20:26:26 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/06 22:01:37 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ int	convert(t_directive *d, char **dst, va_list ap)
 {
 	if (ft_strchr("dDi", d->convertion))
 		return (convert_ll_base(10, dst, cast_s_arg(ap, d), d));
-	if (d->convertion == 'x')
+	if (d->convertion == 'x' || d->convertion == 'X')
 		return (convert_ull_base(16, dst, cast_u_arg(ap, d), d));
-	if (d->convertion == 'o')
+	if (d->convertion == 'o' || d->convertion == 'O')
 		return (convert_ull_base(8, dst, cast_u_arg(ap, d), d));
-	if (d->convertion == 'u')
+	if (d->convertion == 'u' || d->convertion == 'U')
 		return (convert_ull_base(10, dst, cast_u_arg(ap, d), d));
 	if (d->convertion == 's')
 		return (convert_str(dst, va_arg(ap, char *), d, 0));
@@ -67,6 +67,7 @@ int	convert(t_directive *d, char **dst, va_list ap)
 	// 	return convert_wstr(dst, va_arg(ap, char *));
 	if (d->convertion == 'c')
 		return (convert_char(dst, va_arg(ap, int), d));
-
+	if (d->convertion == '%')
+		return (convert_percent(dst, d));
 	return (0);
 }
