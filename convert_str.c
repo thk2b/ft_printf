@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 10:13:50 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/06 22:00:18 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/06 22:15:07 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	convert_str(char **dst, char *src, t_directive *d, int is_char)
 	size_t				srclen;
 
 	cur = 0;
+	if (src == NULL)
+		src = "(null)";
 	srclen = is_char ? 1 : ft_strlen(src);
 	get_len(&len, d, srclen, 0);
 	if ((*dst = (char*)malloc(sizeof(char) * len.total)) == NULL)
