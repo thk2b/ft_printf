@@ -6,13 +6,12 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 14:04:52 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/07 11:25:22 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/07 11:36:37 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "convert.h"
 #include "libft.h"
-#include <printf.h>
 
 static unsigned long long get_pow(int base, unsigned long long ull, size_t *ndigits)
 {
@@ -22,7 +21,7 @@ static unsigned long long get_pow(int base, unsigned long long ull, size_t *ndig
 
 	pow = 1;
 	len = 1;
-	while ((npow = pow * base) <= ull && npow)
+	while ((npow = pow * base) <= ull && npow > pow)
 	{
 		pow = npow;
 		len++;
