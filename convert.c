@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 21:13:11 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/06 22:36:39 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/06 22:42:28 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ static unsigned long long	cast_u_arg(va_list ap, t_directive *d)
 	if (d->length == 'L')
 		return ((unsigned long long)va_arg(ap, unsigned long long));
 	if (d->length == 'h')
-		return ((int)va_arg(ap, int));
+		return ((unsigned short)va_arg(ap, int));
 	if (d->length == 'H')
-		return ((int)va_arg(ap, int));
+		return ((unsigned char)va_arg(ap, int));
 	if (d->length == 'j')
 		return ((uintmax_t)va_arg(ap, uintmax_t));
 	if (d->length == 'z')
@@ -40,9 +40,9 @@ static long long			cast_s_arg(va_list ap, t_directive *d)
 	if (d->length == 'L')
 		return ((long long)va_arg(ap, long long));
 	if (d->length == 'h')
-		return ((int)va_arg(ap, int));
+		return ((short)va_arg(ap, int));
 	if (d->length == 'H')
-		return ((int)va_arg(ap, int));
+		return ((char)va_arg(ap, int));
 	if (d->length == 'j')
 		return ((intmax_t)va_arg(ap, intmax_t));
 	if (d->length == 'z')

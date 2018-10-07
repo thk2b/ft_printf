@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 15:48:52 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/06 22:11:18 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/06 22:40:14 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static size_t set_sign(t_directive *d, char *dst, int is_neg)
 {
 	if (is_neg == 0 && (d->flags & ( F_SPACE | F_PLUS)))
 	{
-		*dst = d->flags & F_SPACE ? ' ' : '+';
+		*dst = d->flags & F_PLUS ? '+' : ' ';
 		return (1);
 	}
 	else if (is_neg)
