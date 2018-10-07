@@ -6,11 +6,11 @@ FLAGS = -Wall -Wextra -Werror -I libft/includes
 
 SRCS =\
 	parse.c\
+	linked_buffer.c\
+	convert_utils.c\
 	convert_num.c\
 	convert_str.c\
-	convert_utils.c\
 	convert.c\
-	linked_buffer.c\
 	get_len.c\
 	ft_asprintf.c\
 	ft_sprintf.c\
