@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 23:01:19 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/07 11:16:22 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/07 11:27:39 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static size_t get_zeros(t_convertion_len *len, t_directive *d, size_t total)
 	return len->zeros;
 }
 
-void	get_len(t_convertion_len *len, t_directive *d, size_t val_len, int is_neg)
+void	get_len(t_convertion_len *len, t_directive *d, size_t val_len, int sign)
 {
 	size_t total;
 
@@ -42,11 +42,11 @@ void	get_len(t_convertion_len *len, t_directive *d, size_t val_len, int is_neg)
 	total += get_zeros(len, d, total);
 	if (ft_strchr("Ddi", d->convertion))
 	{
-		if (is_neg || d->flags & (F_SPACE | F_PLUS))
+		if (sign == -1 || d->flags & (F_SPACE | F_PLUS))
 			len->sign = 1;
 	}
 	total += len->sign;
-	if (d->flags & F_HASH && val_len)
+	if (d->flags & F_HASH && val_len && sign != 0)
 		len->prefix = ft_strchr("Xx", d->convertion) ? 2 : 1;
 	total += len->prefix;
 	if ((unsigned)d->width > total)

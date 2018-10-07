@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 14:04:52 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/07 11:11:24 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/07 11:25:22 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,16 @@ static int set_digits(int base, char *dst, unsigned long long ull, unsigned long
 }
 
 #define ISUPPER(c) ((c) >= 'A' && (c) <= 'Z')
+
+static int get_sign(long long ll)
+{
+	if (ll < 0)
+		return (-1);
+	if (ll == 0)
+		return (0);
+	return (1);
+}
+
 int convert_ull_base(int base, char **dst, unsigned long long ull, t_directive *d)
 {
 	t_convertion_len	len;
@@ -59,7 +69,7 @@ int convert_ull_base(int base, char **dst, unsigned long long ull, t_directive *
 	pow = get_pow(base, ull, &ndigits);
 	if (ull == 0 && d->precision != -1)
 		ndigits = 0;
-	get_len(&len, d, ndigits, 0);
+	get_len(&len, d, ndigits, ull > 0);
 	if ((*dst = (char*)malloc(sizeof(char) * len.total)) == NULL)
 		return (-1);
 	t = *dst;
@@ -83,7 +93,7 @@ int convert_ll_base(int base, char **dst, long long ll, t_directive *d)
 	pow = get_pow(base, ull, &ndigits);
 	if (ull == 0 && d->precision != -1)
 		ndigits = 0;
-	get_len(&len, d, ndigits, ll < 0);
+	get_len(&len, d, ndigits, get_sign(ll));
 	if ((*dst = (char*)malloc(sizeof(char) * len.total)) == NULL)
 		return (-1);
 	t = *dst;
