@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vasprintf.c                                     :+:      :+:    :+:   */
+/*   ft_asprintf.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/03 13:18:13 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/06 17:20:30 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/06 20:17:06 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "parse.h"
-#include "libft.h"
 #include "convert.h"
 #include "linked_buffer.h"
+#include "libft.h"
 #include <stdarg.h>
 
 static char	*strdup_range(const char *start, const char *end)
@@ -46,8 +46,7 @@ int		ft_vasprintf(char **dst, const char *fmt, va_list args)
 			if (start != fmt)
 				lbuf_add(&lbuf, strdup_range(start, fmt), fmt - start);
 			++fmt;
-			int p = parse(&d, fmt);
-			fmt += p;
+			fmt += parse(&d, fmt);
 			conv_len = convert(&d, &tmp, args);
 			lbuf_add(&lbuf, tmp, conv_len);
 			start = fmt;
