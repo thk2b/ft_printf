@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 17:46:36 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/04 20:28:49 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/06 16:42:41 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ typedef struct	s_lbuf_head
 }				t_lbuf_head;
 
 void lbuf_add(t_lbuf_head **head, char *data, size_t len);
-char *lbuf_join(t_lbuf_head *head, size_t maxlen);
+char *lbuf_join(t_lbuf_head *head);
 
 #endif

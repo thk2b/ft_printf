@@ -12,8 +12,9 @@ SRCS =\
 	convert.c\
 	linked_buffer.c\
 	get_len.c\
+	ft_asprintf.c\
+	ft_sprintf.c\
 	ft_printf.c\
-	ft_vsnprintf.c\
 
 OBJS = $(SRCS:.c=.o)
 

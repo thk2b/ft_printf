@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vsnprintf.c                                     :+:      :+:    :+:   */
+/*   ft_vasprintf.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/03 13:18:13 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/06 15:38:14 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/06 17:20:30 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,10 @@ static char	*strdup_range(const char *start, const char *end)
 	return (ft_strncpy(s, start, len));
 }
 
-#include <printf.h>
-int			ft_vsnprintf(char *dst, size_t len, const char *fmt, va_list args)
+int		ft_vasprintf(char **dst, const char *fmt, va_list args)
 {
 	t_directive	d;
 	const char	*start;
-	char		*str;
 	char		*tmp;
 	int			conv_len;
 	t_lbuf_head	*lbuf;
@@ -57,14 +55,23 @@ int			ft_vsnprintf(char *dst, size_t len, const char *fmt, va_list args)
 		else
 			fmt++;
 	}
-	if (start != fmt && (lbuf == NULL || lbuf->total_len < len))
+	if (start != fmt)
 		lbuf_add(&lbuf, strdup_range(start, fmt), fmt - start);
 	if (lbuf == NULL)
 		return (0);
-	str = lbuf_join(lbuf, len);
-	ft_strcpy(dst, str);
-	free(str);
+	*dst = lbuf_join(lbuf);
 	ret = lbuf->total_len;
 	free(lbuf);
 	return ((int)ret);
+}
+
+int	ft_asprintf(char **s, const char *fmt, ...)
+{
+	va_list ap;
+	int len;
+
+	va_start(ap, fmt);
+	len = ft_vasprintf(s, fmt, ap);
+	va_end(ap);
+	return (len);
 }
