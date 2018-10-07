@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 21:13:11 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/06 22:01:37 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/06 22:36:39 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static unsigned long long	cast_u_arg(va_list ap, t_directive *d)
 
 static long long			cast_s_arg(va_list ap, t_directive *d)
 {
-//	if (d->convertion >= 'A' && d->convertion <= 'Z')
 	if (d->length == 'l')
 		return ((long)va_arg(ap, long));
 	if (d->length == 'L')

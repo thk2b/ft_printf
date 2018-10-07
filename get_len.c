@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 23:01:19 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/06 16:11:53 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/06 22:32:52 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,22 @@ void	init_len(t_convertion_len *len)
 	len->total = 0;
 }
 
+static size_t get_zeros(t_convertion_len *len, t_directive *d, size_t total)
+{
+	if (d->convertion == 's' || d->convertion == 'S')
+		return (0);
+	if ((unsigned)d->precision > total)
+		len->zeros = d->precision - total;
+	return len->zeros;
+}
+
 void	get_len(t_convertion_len *len, t_directive *d, size_t val_len, int is_neg)
 {
 	size_t total;
 
 	total = val_len;
 	init_len(len);
-	if ((unsigned)d->precision > total)
-		len->zeros = d->precision - total;
-	total += len->zeros;
+	total += get_zeros(len, d, total);
 	if (ft_strchr("Ddi", d->convertion))
 	{
 		if (is_neg || d->flags & (F_SPACE | F_PLUS))
