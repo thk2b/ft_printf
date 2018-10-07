@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 21:13:11 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/06 22:42:28 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/06 22:45:13 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static long long			cast_s_arg(va_list ap, t_directive *d)
 	if (d->length == 'j')
 		return ((intmax_t)va_arg(ap, intmax_t));
 	if (d->length == 'z')
-		return ((size_t)va_arg(ap, size_t)); // int?
+		return ((size_t)va_arg(ap, size_t));
 	return (va_arg(ap, int));
 }
 
