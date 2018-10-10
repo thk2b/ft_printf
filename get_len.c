@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 23:01:19 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/10 15:41:11 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/10 16:10:19 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ static size_t	get_zeros(t_convertion_len *len, t_directive *d, size_t total)
 	return (len->zeros);
 }
 
-void			get_len(t_convertion_len *len, t_directive *d, size_t val_len, int sign)
+void			get_len(t_convertion_len *len,
+	t_directive *d, size_t val_len, int sign)
 {
 	size_t total;
 
