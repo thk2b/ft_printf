@@ -6,14 +6,15 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 14:04:52 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/10 15:48:43 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/10 16:04:43 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "convert.h"
 #include "libft.h"
 
-static unsigned long long	get_pow(int base, unsigned long long ull, size_t *ndigits)
+static unsigned long long	get_pow(int base,
+	unsigned long long ull, size_t *ndigits)
 {
 	unsigned long long	pow;
 	unsigned long long	npow;
@@ -28,24 +29,6 @@ static unsigned long long	get_pow(int base, unsigned long long ull, size_t *ndig
 	}
 	*ndigits = len;
 	return (pow);
-}
-
-static int					set_digits(int base,
-	char *dst, unsigned long long ull, unsigned long long pow, int upcase)
-{
-	static char	*syms[] = {
-		"0123456789abcdef", "0123456789ABCDEF"};
-	char		*sym;
-	char		*start;
-
-	start = dst;
-	sym = upcase ? syms[1] : syms[0];
-	while (pow)
-	{
-		*dst++ = sym[ull / pow % base];
-		pow /= base;
-	}
-	return (dst - start);
 }
 
 static int					get_sign(long long ll)
@@ -75,7 +58,8 @@ int							convert_ull_base(int base,
 	t = *dst;
 	t += set_pre(t, &len, d, 0);
 	if (ndigits)
-		t += set_digits(base, t, ull, pow, ISUPPER(d->convertion));
+		t += ISUPPER(d->convertion) ? set_up_digits(base, t, ull, pow)
+			: set_low_digits(base, t, ull, pow);
 	set_post(t, &len, d);
 	return (len.total);
 }
@@ -100,7 +84,8 @@ int							convert_ll_base(int base,
 	t = *dst;
 	t += set_pre(t, &len, d, ll < 0);
 	if (ndigits)
-		t += set_digits(base, t, ull, pow, ISUPPER(d->convertion));
+		t += ISUPPER(d->convertion) ? set_up_digits(base, t, ull, pow)
+			: set_low_digits(base, t, ull, pow);
 	set_post(t, &len, d);
 	return (len.total);
 }
