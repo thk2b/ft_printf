@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/06 17:19:17 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/06 17:19:46 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/10 13:27:21 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int	ft_snprintf(char *s, size_t len, const char *fmt, ...)
 
 	va_start(ap, fmt);
 	real_len = ft_vasprintf(&tmp, fmt, ap);
-	ft_strncpy(s, tmp, len);
+	tmp[len] = '\0';
+	ft_strncpy(s, tmp, len - 1);
 	va_end(ap);
 	free(tmp);
 	return (real_len);
