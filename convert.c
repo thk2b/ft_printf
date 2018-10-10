@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 21:13:11 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/10 11:09:52 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/10 11:45:18 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "convert.h"
 #include "libft.h"
 #include <stdarg.h>
-#include <printf.h>
 
 static unsigned long long	cast_u_arg(va_list ap, t_directive *d)
 {
@@ -63,9 +62,9 @@ int	convert(t_directive *d, char **dst, va_list ap)
 	if (d->convertion == 's')
 		return (convert_str(dst, va_arg(ap, char *), d, 0));
 	if (d->convertion == 'S')
-		return (convert_wstr(dst, va_arg(ap, char *), d, 0));
+		return (convert_wstr(dst, va_arg(ap, wchar_t*), d, 0));
 	if (d->convertion == 'C')
-		return (convert_wchar(dst, va_arg(ap, int), d));
+		return (convert_wchar(dst, va_arg(ap, wchar_t), d));
 	if (d->convertion == 'c')
 		return (convert_char(dst, va_arg(ap, int), d));
 	if (d->convertion == '%')
