@@ -4,9 +4,11 @@ CC = gcc
 FLAGS = -Wall -Wextra -Werror -I libft/includes
 
 SRCS =\
+	parse_utils.c\
 	parse.c\
 	linked_buffer.c\
 	convert_utils.c\
+	set_digits.c\
 	convert_num.c\
 	convert_str.c\
 	convert_percent.c\
