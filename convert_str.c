@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 10:13:50 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/06 22:35:38 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/10 10:15:23 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,32 @@ int	convert_str(char **dst, char *src, t_directive *d, int is_char)
 }
 
 int	convert_char(char **dst, char src, t_directive *d)
+{
+	return (convert_str(dst, &src, d, 1));
+}
+
+int	convert_wstr(char **dst, char *src, t_directive *d, int is_char)
+{
+	t_convertion_len	len;
+	size_t				cur;
+	size_t				srclen;
+
+	cur = 0;
+	if (src == NULL)
+		src = "(null)";
+	srclen = is_char ? 1 : ft_strlen(src);
+	srclen = d->precision && srclen > (unsigned)d->precision ? d->precision : srclen;
+	get_len(&len, d, srclen, 0);
+	if ((*dst = (char*)malloc(sizeof(char) * len.total)) == NULL)
+		return (-1);
+	cur += set_pre(*dst, &len, d, 0);
+	ft_strncpy(*dst + cur, src, srclen);
+	cur += srclen;
+	cur += set_post(*dst + cur, &len, d);
+	return (cur);
+}
+
+int	convert_wchar(char **dst, char src, t_directive *d)
 {
 	return (convert_str(dst, &src, d, 1));
 }
