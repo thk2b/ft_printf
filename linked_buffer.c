@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 19:35:40 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/10 15:43:53 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/10 16:18:22 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,27 @@ void				lbuf_add(t_lbuf_head **head, char *data, size_t len)
 	(*head)->total_len += len;
 }
 
+static void			join_blocks(t_lbuf_block *block, char **cur, size_t *len)
+{
+	size_t			cur_len;
+
+	while (block)
+	{
+		if ((cur_len = MIN(block->len, *len)))
+		{
+			ft_memcpy(*cur, block->data, cur_len);
+			*len -= cur_len;
+			*cur += cur_len;
+		}
+		free(block->data);
+		free(block);
+		block = block->next;
+	}
+}
+
 char				*lbuf_join(t_lbuf_head *head)
 {
 	size_t			len;
-	size_t			cur_len;
 	char			*str;
 	char			*cur;
 	t_lbuf_block	*block;
@@ -69,18 +86,7 @@ char				*lbuf_join(t_lbuf_head *head)
 		return (NULL);
 	block = head->data;
 	cur = str;
-	while (block)
-	{
-		if ((cur_len = MIN(block->len, len)))
-		{
-			ft_memcpy(cur, block->data, cur_len);
-			len -= cur_len;
-			cur += cur_len;
-		}
-		free(block->data);
-		free(block);
-		block = block->next;
-	}
+	join_blocks(block, &cur, &len);
 	*cur = '\0';
 	return (str);
 }
