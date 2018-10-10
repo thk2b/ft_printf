@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 10:40:33 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/07 10:58:07 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/10 11:30:55 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ static int parse_convertion(t_directive *d, const char *fmt)
 {
 	if (*fmt == 'p')
 	{
-		d->flags |= F_HASH;
+		d->flags |= (F_HASH | F_PTR);
 		d->length = 'L';
 		d->convertion = 'x';
 		return (1);

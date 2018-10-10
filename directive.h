@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/03 10:43:11 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/04 16:25:54 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/10 11:30:07 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # define F_HASH 4
 # define F_ZERO 8
 # define F_SPACE 16
+# define F_PTR 32
 
 # define L_H 1
 # define L_HH 2
