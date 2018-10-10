@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/03 13:18:13 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/10 15:46:50 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/10 16:43:28 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,21 @@ static char	*strdup_range(const char *start, const char *end)
 	return (ft_strncpy(s, start, len));
 }
 
+static int	finish(t_lbuf_head *lbuf,
+	const char *start, const char *fmt, char **dst)
+{
+	int ret;
+
+	if (start != fmt)
+		lbuf_add(&lbuf, strdup_range(start, fmt), fmt - start);
+	if (lbuf == NULL)
+		return (0);
+	*dst = lbuf_join(lbuf);
+	ret = lbuf->total_len;
+	free(lbuf);
+	return ((int)ret);
+}
+
 int			ft_vasprintf(char **dst, const char *fmt, va_list args)
 {
 	t_directive	d;
@@ -35,12 +50,10 @@ int			ft_vasprintf(char **dst, const char *fmt, va_list args)
 	char		*tmp;
 	int			conv_len;
 	t_lbuf_head	*lbuf;
-	size_t		ret;
 
 	start = fmt;
 	lbuf = NULL;
 	while (*fmt)
-	{
 		if (*fmt == '%')
 		{
 			if (start != fmt)
@@ -53,15 +66,7 @@ int			ft_vasprintf(char **dst, const char *fmt, va_list args)
 		}
 		else
 			fmt++;
-	}
-	if (start != fmt)
-		lbuf_add(&lbuf, strdup_range(start, fmt), fmt - start);
-	if (lbuf == NULL)
-		return (0);
-	*dst = lbuf_join(lbuf);
-	ret = lbuf->total_len;
-	free(lbuf);
-	return ((int)ret);
+	return (finish(lbuf, start, fmt, dst));
 }
 
 int			ft_asprintf(char **s, const char *fmt, ...)
