@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 10:13:50 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/10 11:51:22 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/10 13:42:56 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,18 @@ char	*ft_wstrncpy(char *dst, const wchar_t *src, size_t len)
 	d = dst;
 	while (len--)
 		if (*src)
-			*dst++ = *src++;
+			*dst++ = (char)*src++;
 		else
 			*dst++ = '\0';
 	return (d);
 }
+
 size_t	ft_wstrlen(const wchar_t *s)
 {
 	size_t	n;
 
 	n = 0;
-	while (s[n])
+	while ((char)s[n])
 		n++;
 	return (n);
 }
@@ -72,10 +73,10 @@ int	convert_wstr(char **dst, wchar_t *src, t_directive *d, int is_char)
 	cur = 0;
 	if (src == NULL)
 		src = (wchar_t*)"(null)";
-	srclen = is_char ? 1 : ft_wstrlen(src);
+	srclen = is_char ? 1 : ft_strlen((char*)src);
 	srclen = d->precision && srclen > (unsigned)d->precision ? d->precision : srclen;
 	get_len(&len, d, srclen, 0);
-	if ((*dst = (char*)malloc(sizeof(wchar_t) * len.total)) == NULL)
+	if ((*dst = (char*)malloc(sizeof(char) * len.total)) == NULL)
 		return (-1);
 	cur += set_pre(*dst, &len, d, 0);
 	ft_wstrncpy(*dst + cur, src, srclen);
