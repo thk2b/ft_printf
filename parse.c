@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 10:40:33 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/10 11:30:55 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/10 15:47:59 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "directive.h"
 #include "parse.h"
 
-static void reset_directive(t_directive *d)
+static void	reset_directive(t_directive *d)
 {
 	d->convertion = 0;
 	d->flags = 0;
@@ -23,8 +23,7 @@ static void reset_directive(t_directive *d)
 	d->width = 0;
 }
 
-#define IS_FLAG(c) ((c) == '#' || (c) == ' ' || (c) == '-' || (c) == '+')
-static int parse_flags(t_directive *d, const char *fmt)
+static int	parse_flags(t_directive *d, const char *fmt)
 {
 	int	len;
 
@@ -42,17 +41,17 @@ static int parse_flags(t_directive *d, const char *fmt)
 		else if (fmt[len] == '0')
 		{
 			if (d->flags & F_MINUS)
-				break;
+				break ;
 			d->flags |= F_ZERO;
 		}
 		else
-			break;
+			break ;
 		len++;
 	}
 	return (len);
 }
 
-static int parse_width(t_directive *d, const char *fmt)
+static int	parse_width(t_directive *d, const char *fmt)
 {
 	int len;
 
@@ -67,7 +66,7 @@ static int parse_width(t_directive *d, const char *fmt)
 	return (0);
 }
 
-static int parse_precision(t_directive *d, const char *fmt)
+static int	parse_precision(t_directive *d, const char *fmt)
 {
 	int len;
 
@@ -86,7 +85,7 @@ static int parse_precision(t_directive *d, const char *fmt)
 	return (len);
 }
 
-static int parse_length(t_directive *d, const char *fmt)
+static int	parse_length(t_directive *d, const char *fmt)
 {
 	if (ft_strncmp(fmt, "hh", 2) == 0)
 		d->length = 'H';
@@ -107,7 +106,7 @@ static int parse_length(t_directive *d, const char *fmt)
 	return (0);
 }
 
-static int parse_convertion(t_directive *d, const char *fmt)
+static int	parse_convertion(t_directive *d, const char *fmt)
 {
 	if (*fmt == 'p')
 	{
@@ -122,7 +121,7 @@ static int parse_convertion(t_directive *d, const char *fmt)
 	return (1);
 }
 
-int parse(t_directive *d, const char *fmt)
+int			parse(t_directive *d, const char *fmt)
 {
 	int len;
 
@@ -135,136 +134,3 @@ int parse(t_directive *d, const char *fmt)
 	len += parse_convertion(d, fmt + len);
 	return (len);
 }
-
-// #define TEST
-#ifdef TEST
-# include <printf.h>
-
-void print_directive(t_directive *d)
-{
-	printf("flags (#:%d, -:%d, +:%d, ' ':%d)\n",
-		(d->flags & F_HASH) >= 1,
-		(d->flags & F_MINUS) >= 1,
-		(d->flags & F_PLUS) >= 1,
-		(d->flags & F_SPACE) >= 1
-	);
-	printf("width (%d)\n", d->width);
-	printf("precision (%d)\n", d->precision);
-	printf("length (%c)\n", d->length);
-	printf("convertion (%c)\n", d->convertion);
-}
-
-void test1(void)
-{
-	t_directive d;
-	char s[] = "-.10llx";
-	
-	int len = parse(&d, s);
-	printf("-> %s\n", s);
-	print_directive(&d);
-	printf("len (%d)\n", len);
-}
-void test2(void)
-{
-	t_directive d;
-	char s[] = "#10lld";
-	int len = parse(&d, s);
-	printf("-> %s\n", s);
-	print_directive(&d);
-	printf("len (%d)\n", len);
-}
-void test3(void)
-{
-	t_directive d;
-	char s[] = "#10.15lld";
-	
-	int len = parse(&d, s);
-	printf("-> %s\n", s);
-	print_directive(&d);
-	printf("len (%d)\n", len);
-}
-void test4(void)
-{
-	t_directive d;
-	char s[] = "#-+10.15lld";
-	
-	int len = parse(&d, s);
-	printf("-> %s\n", s);
-	print_directive(&d);
-	printf("len (%d)\n", len);
-}
-void test55(void)
-{
-	t_directive d;
-	char s[] = "#-+d";
-	
-	int len = parse(&d, s);
-	printf("-> %s\n", s);
-	print_directive(&d);
-	printf("len (%d)\n", len);
-}
-void test5(void)
-{
-	t_directive d;
-	char s[] = "lld";
-	
-	int len = parse(&d, s);
-	printf("-> %s\n", s);
-	print_directive(&d);
-	printf("len (%d)\n", len);
-}
-void test6(void)
-{
-	t_directive d;
-	char s[] = "d";
-	
-	int len = parse(&d, s);
-	printf("-> %s\n", s);
-	print_directive(&d);
-	printf("len (%d)\n", len);
-}
-void test7(void)
-{
-	t_directive d;
-	char s[] = ".10d";
-	
-	int len = parse(&d, s);
-	printf("-> %s\n", s);
-	print_directive(&d);
-	printf("len (%d)\n", len);
-}
-void test8(void)
-{
-	t_directive d;
-	char s[] = "#10d";
-	
-	int len = parse(&d, s);
-	printf("-> %s\n", s);
-	print_directive(&d);
-	printf("len (%d)\n", len);
-}
-void test9(void)
-{
-	t_directive d;
-	char s[] = "#.10d";
-	
-	int len = parse(&d, s);
-	printf("-> %s\n", s);
-	print_directive(&d);
-	printf("len (%d)\n", len);
-}
-int main(void)
-{
-	test1();
-	test2();
-	test3();
-	test4();
-	test5();
-	test55();
-	test6();
-	test7();
-	test8();
-	test9();
-}
-
-#endif

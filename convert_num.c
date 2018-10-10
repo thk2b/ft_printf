@@ -6,14 +6,14 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 14:04:52 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/07 11:36:37 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/10 15:48:43 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "convert.h"
 #include "libft.h"
 
-static unsigned long long get_pow(int base, unsigned long long ull, size_t *ndigits)
+static unsigned long long	get_pow(int base, unsigned long long ull, size_t *ndigits)
 {
 	unsigned long long	pow;
 	unsigned long long	npow;
@@ -30,9 +30,11 @@ static unsigned long long get_pow(int base, unsigned long long ull, size_t *ndig
 	return (pow);
 }
 
-static int set_digits(int base, char *dst, unsigned long long ull, unsigned long long pow, int upcase)
+static int					set_digits(int base,
+	char *dst, unsigned long long ull, unsigned long long pow, int upcase)
 {
-	static char	*syms[] = {"0123456789abcdef", "0123456789ABCDEF"};
+	static char	*syms[] = {
+		"0123456789abcdef", "0123456789ABCDEF"};
 	char		*sym;
 	char		*start;
 
@@ -46,9 +48,7 @@ static int set_digits(int base, char *dst, unsigned long long ull, unsigned long
 	return (dst - start);
 }
 
-#define ISUPPER(c) ((c) >= 'A' && (c) <= 'Z')
-
-static int get_sign(long long ll)
+static int					get_sign(long long ll)
 {
 	if (ll < 0)
 		return (-1);
@@ -57,7 +57,8 @@ static int get_sign(long long ll)
 	return (1);
 }
 
-int convert_ull_base(int base, char **dst, unsigned long long ull, t_directive *d)
+int							convert_ull_base(int base,
+	char **dst, unsigned long long ull, t_directive *d)
 {
 	t_convertion_len	len;
 	unsigned long long	pow;
@@ -79,7 +80,8 @@ int convert_ull_base(int base, char **dst, unsigned long long ull, t_directive *
 	return (len.total);
 }
 
-int convert_ll_base(int base, char **dst, long long ll, t_directive *d)
+int							convert_ll_base(int base,
+	char **dst, long long ll, t_directive *d)
 {
 	t_convertion_len	len;
 	unsigned long long	pow;

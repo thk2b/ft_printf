@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/06 21:58:25 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/06 22:02:29 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/10 15:37:58 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include <stdlib.h>
 
-int convert_percent(char **dst, t_directive *d)
+int	convert_percent(char **dst, t_directive *d)
 {
 	t_convertion_len	len;
 	size_t				cur;

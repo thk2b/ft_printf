@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/03 10:53:00 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/04 21:02:26 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/10 15:49:02 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
+#ifndef PARSE_H
+# define PARSE_H
 # include "directive.h"
+# define IS_FLAG(c) ((c) == '#' || (c) == ' ' || (c) == '-' || (c) == '+')
 
 int	parse(t_directive *directive, const char *fmt);
 

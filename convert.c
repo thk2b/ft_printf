@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 21:13:11 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/10 11:45:18 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/10 15:38:12 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static long long			cast_s_arg(va_list ap, t_directive *d)
 	return (va_arg(ap, int));
 }
 
-int	convert(t_directive *d, char **dst, va_list ap)
+int							convert(t_directive *d, char **dst, va_list ap)
 {
 	if (ft_strchr("dDi", d->convertion))
 		return (convert_ll_base(10, dst, cast_s_arg(ap, d), d));

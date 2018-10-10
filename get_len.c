@@ -6,14 +6,14 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 23:01:19 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/10 13:47:10 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/10 15:41:11 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "convert.h"
 #include "libft.h"
 
-void	init_len(t_convertion_len *len)
+void			init_len(t_convertion_len *len)
 {
 	len->left_spaces = 0;
 	len->sign = 0;
@@ -24,16 +24,16 @@ void	init_len(t_convertion_len *len)
 	len->total = 0;
 }
 
-static size_t get_zeros(t_convertion_len *len, t_directive *d, size_t total)
+static size_t	get_zeros(t_convertion_len *len, t_directive *d, size_t total)
 {
 	if (d->convertion == 's' || d->convertion == 'S')
 		return (0);
 	if (d->precision > (int)total)
 		len->zeros = d->precision - total;
-	return len->zeros;
+	return (len->zeros);
 }
 
-void	get_len(t_convertion_len *len, t_directive *d, size_t val_len, int sign)
+void			get_len(t_convertion_len *len, t_directive *d, size_t val_len, int sign)
 {
 	size_t total;
 
@@ -41,10 +41,8 @@ void	get_len(t_convertion_len *len, t_directive *d, size_t val_len, int sign)
 	init_len(len);
 	total += get_zeros(len, d, total);
 	if (ft_strchr("Ddi", d->convertion))
-	{
 		if (sign == -1 || d->flags & (F_SPACE | F_PLUS))
 			len->sign = 1;
-	}
 	total += len->sign;
 	if (d->flags & F_HASH && ((val_len && sign != 0) || d->flags & F_PTR))
 		len->prefix = ft_strchr("Xx", d->convertion) ? 2 : 1;

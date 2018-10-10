@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/03 13:18:13 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/06 20:17:06 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/10 15:46:50 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static char	*strdup_range(const char *start, const char *end)
 	return (ft_strncpy(s, start, len));
 }
 
-int		ft_vasprintf(char **dst, const char *fmt, va_list args)
+int			ft_vasprintf(char **dst, const char *fmt, va_list args)
 {
 	t_directive	d;
 	const char	*start;
@@ -64,10 +64,10 @@ int		ft_vasprintf(char **dst, const char *fmt, va_list args)
 	return ((int)ret);
 }
 
-int	ft_asprintf(char **s, const char *fmt, ...)
+int			ft_asprintf(char **s, const char *fmt, ...)
 {
-	va_list ap;
-	int len;
+	va_list	ap;
+	int		len;
 
 	va_start(ap, fmt);
 	len = ft_vasprintf(s, fmt, ap);

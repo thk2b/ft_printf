@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/06 17:19:17 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/10 13:49:50 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/10 15:40:22 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 int	ft_snprintf(char *s, size_t len, const char *fmt, ...)
 {
-	va_list ap;
-	int real_len;
-	char *tmp;
+	va_list	ap;
+	int		real_len;
+	char	*tmp;
 
 	va_start(ap, fmt);
 	real_len = ft_vasprintf(&tmp, fmt, ap);
@@ -34,9 +34,9 @@ int	ft_snprintf(char *s, size_t len, const char *fmt, ...)
 
 int	ft_sprintf(char *s, const char *fmt, ...)
 {
-	va_list ap;
-	int real_len;
-	char *tmp;
+	va_list	ap;
+	int		real_len;
+	char	*tmp;
 
 	va_start(ap, fmt);
 	real_len = ft_vasprintf(&tmp, fmt, ap);

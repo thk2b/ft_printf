@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 15:48:52 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/07 11:14:30 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/10 15:45:24 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include <printf.h>
 
-static size_t repeat(size_t n, char c, char *dst)
+static size_t	repeat(size_t n, char c, char *dst)
 {
 	size_t	cur;
 
@@ -24,7 +24,7 @@ static size_t repeat(size_t n, char c, char *dst)
 	return (n);
 }
 
-static size_t set_prefix(t_directive *d, char *dst)
+static size_t	set_prefix(t_directive *d, char *dst)
 {
 	if (ft_strchr("xX", d->convertion))
 	{
@@ -36,9 +36,9 @@ static size_t set_prefix(t_directive *d, char *dst)
 	return (1);
 }
 
-static size_t set_sign(t_directive *d, char *dst, int is_neg)
+static size_t	set_sign(t_directive *d, char *dst, int is_neg)
 {
-	if (is_neg == 0 && (d->flags & ( F_SPACE | F_PLUS)))
+	if (is_neg == 0 && (d->flags & (F_SPACE | F_PLUS)))
 	{
 		*dst = d->flags & F_PLUS ? '+' : ' ';
 		return (1);
@@ -51,7 +51,8 @@ static size_t set_sign(t_directive *d, char *dst, int is_neg)
 	return (0);
 }
 
-size_t	set_pre(char *dst, t_convertion_len *len, t_directive *d, char is_neg)
+size_t			set_pre(char *dst,
+	t_convertion_len *len, t_directive *d, char is_neg)
 {
 	size_t cur;
 
@@ -68,7 +69,7 @@ size_t	set_pre(char *dst, t_convertion_len *len, t_directive *d, char is_neg)
 	return (cur);
 }
 
-size_t	set_post(char *dst, t_convertion_len *len, t_directive *d)
+size_t			set_post(char *dst, t_convertion_len *len, t_directive *d)
 {
 	size_t cur;
 
