@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 10:13:50 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/10 13:42:56 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/10 18:16:09 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ size_t	ft_wstrlen(const wchar_t *s)
 	size_t	n;
 
 	n = 0;
-	while ((char)s[n])
+	while (s[n])
 		n++;
 	return (n);
 }
@@ -73,7 +73,7 @@ int	convert_wstr(char **dst, wchar_t *src, t_directive *d, int is_char)
 	cur = 0;
 	if (src == NULL)
 		src = (wchar_t*)"(null)";
-	srclen = is_char ? 1 : ft_strlen((char*)src);
+	srclen = is_char ? 1 : ft_wstrlen(src);
 	srclen = d->precision && srclen > (unsigned)d->precision ? d->precision : srclen;
 	get_len(&len, d, srclen, 0);
 	if ((*dst = (char*)malloc(sizeof(char) * len.total)) == NULL)
