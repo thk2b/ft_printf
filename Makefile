@@ -11,6 +11,7 @@ SRCS =\
 	set_digits.c\
 	convert_num.c\
 	convert_str.c\
+	convert_wstr.c\
 	convert_percent.c\
 	convert.c\
 	get_len.c\
