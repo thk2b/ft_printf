@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 19:11:34 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/10 19:12:42 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/10 19:46:10 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 #include "libft.h"
 #include <wchar.h>
 
-char	*ft_wstrncpy(char *dst, const wchar_t *src, size_t len)
+wchar_t	*ft_wstrncpy(wchar_t *dst, const wchar_t *src, size_t len)
 {
-	char	*d;
+	wchar_t	*d;
 
 	d = dst;
 	while (len--)
 		if (*src)
-			*dst++ = (char)*src++;
+			*dst++ = *src++;
 		else
 			*dst++ = '\0';
 	*dst = '\0';
@@ -54,7 +54,7 @@ int		convert_wstr(char **dst, wchar_t *src, t_directive *d, int is_char)
 	if ((*dst = (char*)malloc(sizeof(char) * len.total)) == NULL)
 		return (-1);
 	cur += set_pre(*dst, &len, d, 0);
-	ft_wstrncpy(*dst + cur, src, srclen);
+	ft_wstrncpy((wchar_t*)(*dst + cur), src, srclen);
 	cur += srclen;
 	cur += set_post(*dst + cur, &len, d);
 	return (cur);
