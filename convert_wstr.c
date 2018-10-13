@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 19:11:34 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/13 13:44:41 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/13 13:45:26 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ char	*ft_wstrncpy(char *dst, const wchar_t *src, size_t len)
 	while (len--)
 		if (*src)
 			*dst++ = (char)*src++;
-		// else
-		// 	*dst++ = '\0';
+		else
+			*dst++ = '\0';
 	*dst = '\0';
 	return (d);
 }
