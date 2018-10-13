@@ -6,17 +6,19 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 19:11:34 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/10 19:46:10 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/13 13:14:13 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "convert.h"
 #include "libft.h"
 #include <wchar.h>
+#include <printf.h>
+#include <string.h>
 
-wchar_t	*ft_wstrncpy(wchar_t *dst, const wchar_t *src, size_t len)
+char	*ft_wstrncpy(char *dst, const wchar_t *src, size_t len)
 {
-	wchar_t	*d;
+	char	*d;
 
 	d = dst;
 	while (len--)
@@ -54,7 +56,7 @@ int		convert_wstr(char **dst, wchar_t *src, t_directive *d, int is_char)
 	if ((*dst = (char*)malloc(sizeof(char) * len.total)) == NULL)
 		return (-1);
 	cur += set_pre(*dst, &len, d, 0);
-	ft_wstrncpy((wchar_t*)(*dst + cur), src, srclen);
+	ft_wstrncpy((*dst + cur), src, srclen);
 	cur += srclen;
 	cur += set_post(*dst + cur, &len, d);
 	return (cur);
