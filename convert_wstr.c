@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 19:11:34 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/13 13:14:13 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/13 13:35:02 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ char	*ft_wstrncpy(char *dst, const wchar_t *src, size_t len)
 	d = dst;
 	while (len--)
 		if (*src)
-			*dst++ = *src++;
+			*dst++ = 0;
+			// *dst++ = (char)*src++;
 		else
 			*dst++ = '\0';
 	*dst = '\0';
