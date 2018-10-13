@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 10:40:33 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/13 14:16:20 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/13 15:49:05 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static int	parse_precision(t_directive *d, const char *fmt, va_list ap)
 		d->precision = 0;
 	return (len);
 }
-
+#include <printf.h>
 static int	parse_convertion(t_directive *d, const char *fmt)
 {
 	if (*fmt == 'p')
@@ -74,6 +74,11 @@ static int	parse_convertion(t_directive *d, const char *fmt)
 		d->flags |= (F_HASH | F_PTR);
 		d->length = 'L';
 		d->convertion = 'x';
+		return (1);
+	}
+	if ((*fmt == 's' || *fmt == 'c') && d->length == 'l')
+	{
+		d->convertion = *fmt - 'a' + 'A';
 		return (1);
 	}
 	if (ft_strchr("DOUB", *fmt))

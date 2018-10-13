@@ -6,15 +6,13 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/10 19:11:34 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/13 15:32:07 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/13 15:49:31 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "convert.h"
 #include "libft.h"
 #include <wchar.h>
-#include <printf.h>
-#include <string.h>
 
 char	*ft_wstrncpy(char *dst, const wchar_t *src, size_t len)
 {
