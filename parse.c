@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 10:40:33 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/13 15:49:05 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/13 16:19:50 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static int	parse_precision(t_directive *d, const char *fmt, va_list ap)
 		d->precision = 0;
 	return (len);
 }
-#include <printf.h>
+
 static int	parse_convertion(t_directive *d, const char *fmt)
 {
 	if (*fmt == 'p')
