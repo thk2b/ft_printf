@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/03 13:18:13 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/10 16:43:28 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/13 14:09:15 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int			ft_vasprintf(char **dst, const char *fmt, va_list args)
 			if (start != fmt)
 				lbuf_add(&lbuf, strdup_range(start, fmt), fmt - start);
 			++fmt;
-			fmt += parse(&d, fmt);
+			fmt += parse(&d, fmt, args);
 			conv_len = convert(&d, &tmp, args);
 			lbuf_add(&lbuf, tmp, conv_len);
 			start = fmt;
