@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 21:13:11 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/10 19:00:24 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/13 12:22:08 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ int							convert(t_directive *d, char **dst, va_list ap)
 		return (convert_ull_base(16, dst, cast_u_arg(ap, d), d));
 	if (d->convertion == 'o' || d->convertion == 'O')
 		return (convert_ull_base(8, dst, cast_u_arg(ap, d), d));
+	if (d->convertion == 'b' || d->convertion == 'B')
+		return (convert_ull_base(2, dst, cast_u_arg(ap, d), d));
 	if (d->convertion == 'u' || d->convertion == 'U')
 		return (convert_ull_base(10, dst, cast_u_arg(ap, d), d));
 	if (d->convertion == 's')

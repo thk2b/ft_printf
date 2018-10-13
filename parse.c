@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 10:40:33 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/10 16:09:11 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/13 12:27:37 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static int	parse_convertion(t_directive *d, const char *fmt)
 		d->convertion = 'x';
 		return (1);
 	}
-	if (ft_strchr("DOU", *fmt))
+	if (ft_strchr("DOUB", *fmt))
 		d->length = 'l';
 	d->convertion = *fmt;
 	return (1);
