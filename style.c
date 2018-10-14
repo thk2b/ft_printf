@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/13 21:02:56 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/13 23:45:11 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/13 23:55:41 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ int			parse_style(t_directive *d, const char *fmt, va_list ap)
 	}
 	else
 		name = fmt + 1;
-
 	set_colors1(d, name, len - 2);
 	set_style1(d, name, len - 2);
 	if (d->flags == 0)
