@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/13 21:02:56 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/13 23:43:19 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/13 23:45:11 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int			parse_style(t_directive *d, const char *fmt, va_list ap)
 	if (fmt[1] == '*')
 	{
 		name = va_arg(ap, char *);
+		if (len != 3)
+			return (len);
 		len = ft_strlen(name);
 	}
 	else
