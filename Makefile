@@ -5,6 +5,7 @@ FLAGS = -Wall -Wextra -Werror -I libft/includes
 
 SRCS =\
 	parse_utils.c\
+	style.c\
 	parse.c\
 	linked_buffer.c\
 	convert_utils.c\
@@ -27,6 +28,7 @@ SRCS =\
 	$(LIBFT_SRC)/ft_strlen.c\
 	$(LIBFT_SRC)/ft_strncmp.c\
 	$(LIBFT_SRC)/ft_strncpy.c\
+	$(LIBFT_SRC)/ft_strnequ.c\
 
 OBJS = $(SRCS:.c=.o)
 
