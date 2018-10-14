@@ -6,13 +6,14 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 21:13:11 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/13 15:49:17 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/13 21:27:40 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "directive.h"
 #include "convert.h"
 #include "libft.h"
+#include "style.h"
 #include <stdarg.h>
 
 static unsigned long long	cast_u_arg(va_list ap, t_directive *d)
@@ -69,6 +70,8 @@ int							convert(t_directive *d, char **dst, va_list ap)
 		return (convert_char(dst, va_arg(ap, int), d));
 	if (d->convertion == 'C')
 		return (convert_wchar(dst, va_arg(ap, wchar_t), d));
+	if (d->convertion == '{')
+		return (convert_style(dst, d));
 	if (d->convertion == '%')
 		return (convert_percent(dst, d));
 	return (0);
