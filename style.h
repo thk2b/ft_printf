@@ -6,13 +6,15 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/13 21:07:29 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/13 22:46:58 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/13 23:33:58 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STYLE_H
 # define STYLE_H
 # include "directive.h"
+# include <stdarg.h>
+
 # define S_EOC 1
 # define S_RED 2
 # define S_GREEN 4
@@ -25,7 +27,7 @@
 # define S_INVERT 512
 # define S_UNDERLINED 1024
 
-int	parse_style(t_directive *directive, const char *fmt);
+int	parse_style(t_directive *directive, const char *fmt, va_list ap);
 int	convert_style(char **dst, t_directive *directive);
 
 #endif

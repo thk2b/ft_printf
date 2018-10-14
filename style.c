@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/13 21:02:56 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/13 22:50:09 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/13 23:43:19 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,11 @@ static void	set_style1(t_directive *d, const char *name, int len)
 		d->flags |= S_UNDERLINED;
 }
 
-int			parse_style(t_directive *d, const char *fmt)
+int			parse_style(t_directive *d, const char *fmt, va_list ap)
 {
-	int		len;
-	char	*end;
+	int			len;
+	char		*end;
+	const char	*name;
 
 	len = 1;
 	d->convertion = '{';
@@ -55,11 +56,19 @@ int			parse_style(t_directive *d, const char *fmt)
 	if (end == NULL)
 		return (len);
 	len += end - fmt;
-	set_colors1(d, fmt + 1, len - 2);
-	set_style1(d, fmt + 1, len - 2);
+	if (fmt[1] == '*')
+	{
+		name = va_arg(ap, char *);
+		len = ft_strlen(name);
+	}
+	else
+		name = fmt + 1;
+
+	set_colors1(d, name, len - 2);
+	set_style1(d, name, len - 2);
 	if (d->flags == 0)
 		return (1);
-	return (len);
+	return (fmt[1] == '*' ? 3 : len);
 }
 
 static int	apply_style(char **dst, const char *code)

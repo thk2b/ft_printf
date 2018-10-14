@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 10:40:33 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/13 21:27:17 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/13 23:34:11 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int			parse(t_directive *d, const char *fmt, va_list ap)
 
 	reset_directive(d);
 	if (*fmt == '{')
-		return (parse_style(d, fmt));
+		return (parse_style(d, fmt, ap));
 	len = 0;
 	len += parse_flags(d, fmt + len);
 	len += parse_width(d, fmt + len, ap);
