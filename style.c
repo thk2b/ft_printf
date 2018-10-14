@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/13 21:02:56 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/13 22:35:08 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/13 22:50:09 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,16 @@ static void	set_colors1(t_directive *d, const char *name, int len)
 		d->flags |= S_CYAN;
 }
 
+static void	set_style1(t_directive *d, const char *name, int len)
+{
+	if (ft_strnequ(name, "bold", len))
+		d->flags |= S_BOLD;
+	else if (ft_strnequ(name, "invert", len))
+		d->flags |= S_INVERT;
+	else if (ft_strnequ(name, "underline", len))
+		d->flags |= S_UNDERLINED;
+}
+
 int			parse_style(t_directive *d, const char *fmt)
 {
 	int		len;
@@ -46,6 +56,9 @@ int			parse_style(t_directive *d, const char *fmt)
 		return (len);
 	len += end - fmt;
 	set_colors1(d, fmt + 1, len - 2);
+	set_style1(d, fmt + 1, len - 2);
+	if (d->flags == 0)
+		return (1);
 	return (len);
 }
 
@@ -78,5 +91,11 @@ int			convert_style(char **dst, t_directive *d)
 		return (apply_style(dst, "\x1b[33m"));
 	else if (d->flags & S_CYAN)
 		return (apply_style(dst, "\x1b[36m"));
+	if (d->flags & S_BOLD)
+		return (apply_style(dst, "\x1b[1m"));
+	else if (d->flags & S_INVERT)
+		return (apply_style(dst, "\x1b[7m"));
+	else if (d->flags & S_UNDERLINED)
+		return (apply_style(dst, "\x1b[4m"));
 	return (0);
 }

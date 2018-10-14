@@ -6,7 +6,7 @@
 /*   By: tkobb <tkobb@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/13 21:07:29 by tkobb             #+#    #+#             */
-/*   Updated: 2018/10/13 22:33:38 by tkobb            ###   ########.fr       */
+/*   Updated: 2018/10/13 22:46:58 by tkobb            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # define S_WHITE 32
 # define S_YELLOW 64
 # define S_CYAN 128
+# define S_BOLD 256
+# define S_INVERT 512
+# define S_UNDERLINED 1024
 
 int	parse_style(t_directive *directive, const char *fmt);
 int	convert_style(char **dst, t_directive *directive);
